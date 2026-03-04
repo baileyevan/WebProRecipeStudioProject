@@ -4,19 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MealForge - Home</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
 
     <nav id="navBar">
-        <h1 id="appName">App Name</h1>
-        <img id="burgerMenuIcon" src="./assets/burger-menu-svgrepo-com.svg">
+        <h1 id="appName">MealForge</h1>
+
+        <input type="checkbox" id="toggle" class="hidden">
+        <label for="toggle" class="toggleLabel">
+            <img id="burgerMenuIcon" src="./assets/burger-menu-svgrepo-com.svg">
+        </label>
+        <div id="slidingMenu">
+            <div class="menuItem dim1">
+                <span><b><a href="./pages/recipes.html">BROWSE RECIPES</a></b></span>
+            </div>
+            <div class="menuItem dim2">
+                <span><b><a href="./pages/support.html">SUPPORT PAGE</a></b></span>
+            </div>
+        </div>
     </nav>
 
+
     <div id="welcomingSection">
-        <h2 id="welcomingHeader">Welcome to {App Name}!</h2>
+        <h2 id="welcomingHeader">Welcome to MealForge!</h2>
         <span id="welcomingSubText"><i>find, cook, and enjoy amazing recipes - all in one place.</i></span>
     </div>
 
