@@ -218,6 +218,155 @@ h6 {
     border: 1px solid;
 }
 
+/* ================================
+   Recipe Details Styling
+
+================================ */
+
+/* Recipe Page Title */
+h2 {
+    margin-top: 20vh;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--charcoal);
+    letter-spacing: 1px;
+    margin-bottom: 4vh; /* space before the image */
+}
+
+/* Optional decorative underline */
+h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--sage);
+    margin: 1rem auto 0 auto;
+    border-radius: 2px;
+}
+
+
+/* Layout Wrapper */
+#recipeContent {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#recipeContent img {
+    width: 100%;
+    max-width: 300px;   /* keeps it from getting huge */
+    height: auto;
+    border-radius: 12px;
+    margin: 0 auto 2rem auto;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,1.1);
+}
+
+/* Section Headings */
+#recipeContent h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--sage);
+    padding-bottom: 0.4rem;
+}
+
+
+/* Ingredients List */
+#ingredientsSection ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+#ingredientsSection li {
+    background: var(--mint);
+    padding: 0.7rem 1rem;
+    margin: 0.4rem 0;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#ingredientsSection li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#ingredientsSection h3 {
+    margin-top: 30px;
+    font-size: 1.6rem;
+    color: var(--sage);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#ingredientsSection h3::before {
+    content: "🍴";
+    font-size: 1.4rem;
+}
+
+/* Instructions List */
+#instructionsSection ol {
+    padding-left: 1.2rem;
+}
+
+#instructionsSection li {
+    margin: 1rem 0;
+    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    color: var(--charcoal);
+    background: #ffffff;
+    padding: 1rem;
+    border-left: 4px solid var(--sage);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: background 0.2s ease;
+}
+
+#instructionsSection li:hover {
+    background: var(--mint);
+}
+
+#instructionsSection h3 {
+    margin-top: 30px;
+    font-size: 1.6rem;
+    color: var(--sage);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}       
+
+#instructionsSection h3::before {
+    content: "👩‍🍳";
+    font-size: 1.4rem;
+}
+
+#ingredientsSection,
+#instructionsSection {
+    max-width: 600px;      /* keeps it clean and readable */
+    margin: 0 auto;        /* centers the whole section */
+    text-align: left;      /* keeps list text aligned properly */
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #recipeContent {
+        width: 92%;
+        padding: 1.5rem;
+    }
+
+    #recipeContent h3 {
+        font-size: 1.5rem;
+    }
+}
+
 
 /* Footer Section */
 
@@ -242,7 +391,7 @@ h6 {
 /* Recipes Page */
 
 #recipeHeaderSection {
-    margin-top: 20vh;
+    margin-top: 40vh;
     height: 15vh;
     background-color: var(--cream);
     display: flex;
@@ -253,6 +402,7 @@ h6 {
 }
 
 #recipeHeaderSection h2 {
+    margin-top: 0;
     width: 100%;
 }
 
