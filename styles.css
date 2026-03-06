@@ -464,25 +464,6 @@ h6 {
 }
 
 
-/* Footer Section */
-
-#mainPageFooterSection {
-    height: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--sage);
-}
-
-#mainPageFooterSection button {
-    width: 125px;
-    height: 30px;
-    background-color: var(--accent);
-    border: 1px solid black;
-    border-radius: 20px;
-}
-
 
 /* Recipes Page */
 
@@ -499,6 +480,17 @@ h6 {
 #recipeHeaderSection h2 {
     margin: 0;
     padding-top: 2rem;
+}
+
+#recipeHeaderSection h2::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: var(--sage);
+    margin: 1rem auto 0 auto;
+    border-radius: 2px;
+    animation: underlineGrow 0.6s ease-out forwards;
 }
 
 #recipeSubtitle {
@@ -560,4 +552,57 @@ h6 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/* Floating AI Button */
+#aiFloatingButton {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--sage), var(--mint));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 18px rgba(164, 195, 178, 0.7);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Hover effect */
+#aiFloatingButton:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 25px rgba(107, 144, 128, 0.9);
+}
+
+/* Emoji styling */
+.aiEmoji {
+    font-size: 32px;
+    line-height: 1;
+    color: var(--cream);
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+}
+
+
+
+/* Footer Section */
+
+#mainPageFooterSection {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--sage);
+}
+
+#mainPageFooterSection button {
+    width: 125px;
+    height: 30px;
+    background-color: var(--accent);
+    border: 1px solid black;
+    border-radius: 20px;
 }
