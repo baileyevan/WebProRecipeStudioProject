@@ -102,38 +102,60 @@ h6 {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 3;
-    opacity: .85;
+    opacity: .92;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    /* centers items vertically */
     align-items: center;
+    gap: 4vh;
+    /* spacing between menu items */
 }
 
 .menuItem {
-    height: 40vh;
-    color: var(--cream);
-    font-size: 10vh;
-    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    width: 100%;
+    height: 18vh;
+    /* more reasonable height */
     display: flex;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vh;
+    /* more balanced text size */
+    color: var(--cream);
+    font-family: 'Playfair Display', Georgia, serif;
+    background-color: transparent;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menuItem:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: scale(1.03);
 }
 
 .menuItem span {
-    margin-left: 2%;
     width: 100%;
-    height: 100%;
-    transform: translateY(25%);
+    text-align: center;
+    transform: none;
+    /* removes the awkward vertical shift */
 }
 
 .dim1 {
     background-color: #000000;
 }
 
+.dim2 {
+    background-color: #111111;
+}
+
+.dim3 {
+    background-color: #1a1a1a;
+}
+
 
 /* WELCOMING SECTION */
 
 #welcomingSection {
-    margin-top: 100px;
+    margin-top: 20vh;
     height: 200px;
     background-color: var(--mint);
     display: flex;
@@ -218,6 +240,119 @@ h6 {
     border: 1px solid;
 }
 
+#browseRecipesSection button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    color: inherit;
+    margin-top: -5px;
+}
+
+
+/* FILTER SECTION */
+
+#recipeFilteringSection {
+    text-align: center;
+    margin: 4vh 0;
+}
+
+.filterControls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* Hide radio buttons */
+
+.filterControls input[type="radio"] {
+    display: none;
+}
+
+
+/* Filter buttons */
+
+.filterControls label {
+    padding: 10px 18px;
+    background: var(--mint);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.filterControls label:hover {
+    background: var(--sage);
+    transform: translateY(-3px);
+}
+
+.filterControls input[type="radio"]:checked+label {
+    background: var(--sage);
+    color: white;
+    transform: translateY(-3px);
+}
+
+
+/* DEFAULT: Show all recipes */
+
+#filter-all:checked~#displayedRecipesSection .displayedRecipe {
+    display: block;
+}
+
+
+/* SOUPS */
+
+#filter-soups:checked~#displayedRecipesSection .displayedRecipe:not(.soups) {
+    display: none;
+}
+
+
+/* CAKES */
+
+#filter-cakes:checked~#displayedRecipesSection .displayedRecipe:not(.cakes) {
+    display: none;
+}
+
+
+/* COOKIES */
+
+#filter-cookies:checked~#displayedRecipesSection .displayedRecipe:not(.cookies) {
+    display: none;
+}
+
+
+/* PASTAS */
+
+#filter-pastas:checked~#displayedRecipesSection .displayedRecipe:not(.pastas) {
+    display: none;
+}
+
+
+/* SALADS */
+
+#filter-salads:checked~#displayedRecipesSection .displayedRecipe:not(.salads) {
+    display: none;
+}
+
+
+/* MEAT */
+
+#filter-meatDishes:checked~#displayedRecipesSection .displayedRecipe:not(.meatDishes) {
+    display: none;
+}
+
+
+/* VEGETARIAN */
+
+#filter-vegetarian:checked~#displayedRecipesSection .displayedRecipe:not(.vegetarian) {
+    display: none;
+}
+
 
 /* ================================
    Recipe Details Styling
@@ -227,7 +362,7 @@ h6 {
 
 /* Recipe Page Title */
 
-h2 {
+.recipeNameHeader {
     margin-top: 20vh;
     text-align: center;
     font-family: 'Playfair Display', serif;
@@ -340,7 +475,7 @@ h2::after {
     border-left: 4px solid var(--sage);
     border-radius: 6px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: background 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
 #instructionsSection li:hover {
@@ -404,23 +539,48 @@ h2::after {
     border-radius: 20px;
 }
 
+#mainPageFooterSection button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
 
 /* Recipes Page */
 
 #recipeHeaderSection {
-    margin-top: 40vh;
-    height: 15vh;
+    margin-top: 20vh;
+    /* just enough to clear the fixed navbar */
+    padding-bottom: 2rem;
+    /* creates the gap before filters */
     background-color: var(--cream);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
     color: var(--charcoal);
+    height: 50vh;
+    font-size: 3rem;
 }
 
 #recipeHeaderSection h2 {
-    margin-top: 0;
-    width: 100%;
+    margin: 0;
+    padding-top: 2rem;
+}
+
+#recipeSubtitle {
+    margin-top: 5rem;
+    font-size: 1.15rem;
+    color: var(--charcoal);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    padding: 1rem 1.4rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--mint), var(--sage));
+    color: black;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 #displayedRecipesSection {
@@ -435,7 +595,6 @@ h2::after {
 }
 
 .displayedRecipe {
-    background-color: red;
     display: flex;
     flex-direction: column;
     justify-content: center;

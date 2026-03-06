@@ -9,6 +9,8 @@
 </head>
 
 <body>
+
+    <!-- NAVIGATION -->
     <nav id="navBar">
         <h1 id="appName">MealForge</h1>
 
@@ -16,6 +18,7 @@
         <label for="toggle" class="toggleLabel">
             <img id="burgerMenuIcon" src="../assets/burger-menu-svgrepo-com.svg">
         </label>
+
         <div id="slidingMenu">
             <div class="menuItem dim1">
                 <span><b><a href="../index.html">HOME</a></b></span>
@@ -26,104 +29,134 @@
         </div>
     </nav>
 
-    <!-- Recipe Header Section-->
+    <!-- FILTER INPUTS (must be siblings of displayedRecipesSection) -->
+    <input type="radio" name="filter" id="filter-all" checked>
+    <input type="radio" name="filter" id="filter-soups">
+    <input type="radio" name="filter" id="filter-cakes">
+    <input type="radio" name="filter" id="filter-cookies">
+    <input type="radio" name="filter" id="filter-pastas">
+    <input type="radio" name="filter" id="filter-salads">
+    <input type="radio" name="filter" id="filter-meatDishes">
+    <input type="radio" name="filter" id="filter-vegetarian">
+
+    
     <div id="recipeHeaderSection">
         <h2>Recipes</h2>
+        <p id="recipeSubtitle">
+            Ready to cook something amazing? Pick a category below and let the flavor adventure begin.
+        </p>
     </div>
 
+    <!-- FILTER BUTTONS -->
+    <div id="recipeFilteringSection">
+        <div class="filterControls">
+            <label for="filter-all">All</label>
+            <label for="filter-soups">Soups</label>
+            <label for="filter-cakes">Cakes</label>
+            <label for="filter-cookies">Cookies</label>
+            <label for="filter-pastas">Pastas</label>
+            <label for="filter-salads">Salads</label>
+            <label for="filter-meatDishes">Meat</label>
+            <label for="filter-vegetarian">Vegetarian</label>
+        </div>
+    </div>
+
+    <!-- RECIPES GRID -->
     <div id="displayedRecipesSection">
+
         <div class="displayedRecipe soups">
-            <a href="../pages/recipes/harira.html" target="_blank" rel="noopener noreferrer">
-                <h4>Harira</h4><br>
-                <img src="../images/popularRecipes/harira.jpg" alt="image of recipe">
+            <a href="../pages/recipes/harira.html" target="_blank">
+                <h4>Harira</h4>
+                <img src="../images/popularRecipes/harira.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe fingerFoods">
-            <a href="../pages/recipes/pizzaMargherita.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/pizzaMargherita.html" target="_blank">
                 <h4>Pizza Margherita</h4>
-                <img src="../images/popularRecipes/pizzaMargherita.jpg" alt="image of recipe">
+                <img src="../images/popularRecipes/pizzaMargherita.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe cookies">
-            <a href="../pages/recipes/chocolateTurtleCookies.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/chocolateTurtleCookies.html" target="_blank">
                 <h4>Chocolate Turtle Cookies</h4>
-                <img src="../images/recipes/chocolateTurleCookies.jpg" alt="image of recipe">
+                <img src="../images/recipes/chocolateTurleCookies.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe cakes">
-            <a href="../pages/recipes/phillyFluffCake.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/phillyFluffCake.html" target="_blank">
                 <h4>Philly Fluff Cake</h4>
-                <img src="../images/popularRecipes/phillyFluffCake.jpg" alt="image of recipe">
+                <img src="../images/popularRecipes/phillyFluffCake.jpg">
             </a>
         </div>
 
-        <div class="displayedRecipe food">
-            <a href="../pages/recipes/roastedCarrotsAndParsnipsWithHoney.html" target="_blank" rel="noopener noreferrer">
+        <div class="displayedRecipe food vegetarian">
+            <a href="../pages/recipes/roastedCarrotsAndParsnipsWithHoney.html" target="_blank">
                 <h4>Roasted Carrots & Parsnips</h4>
-                <img src="../images/recipes/roastedCarrotsAndParsnipsWithHoney.jpg" alt="image of recipe">
+                <img src="../images/recipes/roastedCarrotsAndParsnipsWithHoney.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe salads">
-            <a href="../pages/recipes/cucumberSalad.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/cucumberSalad.html" target="_blank">
                 <h4>Cucumber Salad</h4>
-                <img src="../images/recipes/cucumberSalad.jpg" alt="image of recipe">
+                <img src="../images/recipes/cucumberSalad.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe soups">
-            <a href="../pages/recipes/creamOfAsparagusSoup.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/creamOfAsparagusSoup.html" target="_blank">
                 <h4>Cream of Asparagus Soup</h4>
-                <img src="../images/recipes/creamOfAsparagusSoup.jpg" alt="image of recipe">
+                <img src="../images/recipes/creamOfAsparagusSoup.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe pies">
-            <a href="../pages/recipes/chocolateMochaPie.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/chocolateMochaPie.html" target="_blank">
                 <h4>Chocolate Mocha Pie</h4>
-                <img src="../images/recipes/chocolateMochaPie.jpg" alt="image of recipe">
+                <img src="../images/recipes/chocolateMochaPie.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe pastas">
-            <a href="../pages/recipes/pastaPuttanesca.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/pastaPuttanesca.html" target="_blank">
                 <h4>Pasta Puttanesca</h4>
-                <img src="../images/recipes/pastaPuttanesca.jpg" alt="image of recipe">
+                <img src="../images/recipes/pastaPuttanesca.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe cakes">
-            <a href="../pages/recipes/lemonRaspberryCake.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/lemonRaspberryCake.html" target="_blank">
                 <h4>Lemon Raspberry Cake</h4>
-                <img src="../images/recipes/lemonRaspberryCake.jpg" alt="image of recipe">
+                <img src="../images/recipes/lemonRaspberryCake.jpg">
             </a>
         </div>
 
         <div class="displayedRecipe meatDishes">
-            <a href="../pages/recipes/smashedBeefKebab.html" target="_blank" rel="noopener noreferrer">
+            <a href="../pages/recipes/smashedBeefKebab.html" target="_blank">
                 <h4>Smashed Beef Kebab</h4>
-                <img src="../images/recipes/smashedBeefKebab.jpeg" alt="image of recipe">
+                <img src="../images/recipes/smashedBeefKebab.jpeg">
             </a>
         </div>
 
-        <div class="displayedRecipe pastas">
-            <a href="../pages/recipes/vegetarianMoussaka.html" target="_blank" rel="noopener noreferrer">
+        <div class="displayedRecipe vegetarian">
+            <a href="../pages/recipes/vegetarianMoussaka.html" target="_blank">
                 <h4>Vegetarian Moussaka</h4>
-                <img src="../images/recipes/vegetarianMoussaka.jpg" alt="image of recipe">
+                <img src="../images/recipes/vegetarianMoussaka.jpg">
             </a>
         </div>
-    
+
+
+
     </div>
 
-    <!-- Footer Section  -->
+    <!-- FOOTER -->
     <div id="mainPageFooterSection">
         <h4>Contact Us: 770-777-7777</h4>
         <button><a href="./support.html">Support Page</a></button>
     </div>
 
 </body>
-
 </html>
