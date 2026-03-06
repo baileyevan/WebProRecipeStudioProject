@@ -102,32 +102,41 @@ h6 {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 3;
-    opacity: .85;
+    opacity: .92;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center; /* centers items vertically */
     align-items: center;
+    gap: 4vh; /* spacing between menu items */
 }
 
 .menuItem {
-    height: 40vh;
-    color: var(--cream);
-    font-size: 10vh;
-    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    width: 100%;
+    height: 18vh; /* more reasonable height */
     display: flex;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vh; /* more balanced text size */
+    color: var(--cream);
+    font-family: 'Playfair Display', Georgia, serif;
+    background-color: transparent;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.menuItem:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: scale(1.03);
 }
 
 .menuItem span {
-    margin-left: 2%;
     width: 100%;
-    height: 100%;
-    transform: translateY(25%);
+    text-align: center;
+    transform: none; /* removes the awkward vertical shift */
 }
 
-.dim1 {
-    background-color: #000000;
-}
+.dim1 { background-color: #000000; }
+.dim2 { background-color: #111111; }
+.dim3 { background-color: #1a1a1a; }
 
 
 /* WELCOMING SECTION */
