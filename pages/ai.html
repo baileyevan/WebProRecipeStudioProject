@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealForge AI Assistant</title>
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+        body {
+            background: var(--cream);
+            padding-top: 20vh;
+        }
+
+        #aiPageContainer {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        }
+
+        #aiHeader {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--sage);
+        }
+
+        /* Chat window */
+        #chatWindow {
+            height: 60vh;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--mint);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Reveal responses when clicked */
+        #q1:checked ~ .r1 { display: block; }
+        #q2:checked ~ .r2 { display: block; }
+        #q3:checked ~ .r3 { display: block; }
+        #q4:checked ~ .r4 { display: block; }
+        #q5:checked ~ .r5 { display: block; }
+
+        /* Fade animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Fake AI responses (CSS-only keyword matching) */
+        #userInput[value*="pasta"] ~ #chatWindow .aiPasta,
+        #userInput[value*="dessert"] ~ #chatWindow .aiDessert,
+        #userInput[value*="vegetarian"] ~ #chatWindow .aiVeg,
+        #userInput[value*="substitute"] ~ #chatWindow .aiSub,
+        #userInput[value*="other"] ~ #chatWindow .aiOther {
+            display: block;
+        }
+
+        .aiPasta, .aiDessert, .aiVeg, .aiSub, .aiOther {
+            display: none;
+        }
+
+        /* Hide all radio buttons */
+        input[type="radio"] { display: none; }
+
+        /* Hide all responses and later steps by default */
+        .resp, .step2, .step3 { display: none; }
+
+        /* STEP 1 → Show responses */
+        #s1-pasta:checked ~ .s1-pasta,
+        #s1-dessert:checked ~ .s1-dessert,
+        #s1-veg:checked ~ .s1-veg {
+            display: block;
+        }
+
+        /* STEP 1 → Reveal step 2 choices */
+        #s1-pasta:checked ~ .step2,
+        #s1-dessert:checked ~ .step2,
+        #s1-veg:checked ~ .step2 {
+            display: block;
+        }
+
+        /* STEP 2 → Show responses */
+        #s2-creamy:checked ~ .s2-creamy,
+        #s2-tomato:checked ~ .s2-tomato,
+        #s2-baked:checked ~ .s2-baked {
+            display: block;
+        }
+
+        /* STEP 2 → Reveal step 3 choices */
+        #s2-creamy:checked ~ .step3,
+        #s2-tomato:checked ~ .step3,
+        #s2-baked:checked ~ .step3 {
+            display: block;
+        }
+
+        /* STEP 3 → Show final responses */
+        #s3-yes:checked ~ .s3-yes,
+        #s3-no:checked ~ .s3-no {
+            display: block;
+        }
+
+        /* Buttons */
+        .choiceBubble {
+            background: var(--sage);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            margin: 0.4rem 0;
+            display: inline-block;
+            cursor: pointer;
+            align-self: flex-end;
+            transition: .2s;
+        }
+
+        .choiceBubble:hover {
+            transform: scale(1.05);
+        }
+
+        /* Recipe link bubble */
+        .dishBubble {
+            background: white;
+            border: 1px solid var(--sage);
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+
+        .dishBubble:hover {
+            background: var(--mint);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="aiPageContainer">
+        <h2 id="aiHeader">SousAI Assistant</h2>
+
+        <div id="chatWindow">
+
+            <!-- STEP 0 — Greeting -->
+            <div class="aiBubble">Hi! I'm SousAI. What can I help you with today?</div>
+
+            <!-- STEP 1 — User chooses a topic -->
+            <input type="radio" name="step1" id="s1-pasta">
+            <input type="radio" name="step1" id="s1-dessert">
+            <input type="radio" name="step1" id="s1-veg">
+
+            <div class="choices step1">
+                <label for="s1-pasta" class="choiceBubble">🍝 I want a pasta recipe</label>
+                <label for="s1-dessert" class="choiceBubble">🍰 I want a dessert</label>
+                <label for="s1-veg" class="choiceBubble">🥗 I want something vegetarian</label>
+            </div>
+
+            <!-- STEP 1 RESPONSES -->
+            <div class="aiBubble resp s1-pasta">Great choice! What kind of pasta are you in the mood for?</div>
+            <div class="aiBubble resp s1-dessert">Yum! What kind of dessert are you craving?</div>
+            <div class="aiBubble resp s1-veg">Healthy and delicious! What type of vegetarian dish?</div>
+
+            <!-- STEP 2 — Follow-up options -->
+            <input type="radio" name="step2" id="s2-creamy">
+            <input type="radio" name="step2" id="s2-tomato">
+            <input type="radio" name="step2" id="s2-baked">
+
+            <div class="choices step2">
+                <label for="s2-creamy" class="choiceBubble creamy">Creamy</label>
+                <label for="s2-tomato" class="choiceBubble tomato">Tomato-based</label>
+                <label for="s2-baked" class="choiceBubble baked">Baked pasta</label>
+            </div>
+
+            <!-- STEP 2 RESPONSES -->
+            <div class="aiBubble resp s2-creamy">Try a creamy garlic parmesan pasta. Want the recipe?</div>
+            <div class="aiBubble resp s2-tomato">Pasta Puttanesca is bold and delicious. Want the recipe?</div>
+            <div class="aiBubble resp s2-baked">Baked ziti is always a hit. Want the recipe?</div>
+
+            <!-- STEP 3 — Final step: link to recipe -->
+            <input type="radio" name="step3" id="s3-yes">
+            <input type="radio" name="step3" id="s3-no">
+
+            <div class="choices step3">
+                <label for="s3-yes" class="choiceBubble">Yes, show me!</label>
+                <label for="s3-no" class="choiceBubble">No, something else</label>
+            </div>
+
+            <!-- STEP 3 RESPONSES -->
+            <div class="aiBubble resp s3-yes">
+                Perfect! Here’s the recipe:
+                <a href="pages/recipes/pastaPuttanesca.html" class="dishBubble">Go to Recipe</a>
+            </div>
+
+            <div class="aiBubble resp s3-no">No problem! What else can I help you with?</div>
+
+        </div>
+
+
+
+</body>
+</html>
