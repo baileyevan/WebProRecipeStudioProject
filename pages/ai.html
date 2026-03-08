@@ -6,19 +6,80 @@
     <title>MealForge AI Assistant</title>
     <link rel="stylesheet" href="../styles.css">
 
+    <nav id="navBar">
+        <h1 id="appName">MealForge</h1>
+    </nav>
     <style>
         body {
             background: var(--cream);
             padding-top: 20vh;
+            overflow-x: hidden;
         }
 
+        /* ✨ FLOATING PARTICLE SHIMMER LAYER (VISIBLE VERSION) */
+        #particleLayer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* Create 40 floating particles */
+        .particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(13, 251, 13, 0.9), rgba(170,200,170,0));
+            border-radius: 50%;
+            animation: floatUp 12s linear infinite;
+            opacity: 0.7;
+            filter: blur(1px);
+        }
+
+        /* Randomize particle positions */
+        /* You can add more if you want a denser shimmer */
+        .particle:nth-child(1) { left: 10%; animation-duration: 14s; }
+        .particle:nth-child(2) { left: 25%; animation-duration: 18s; }
+        .particle:nth-child(3) { left: 40%; animation-duration: 16s; }
+        .particle:nth-child(4) { left: 55%; animation-duration: 20s; }
+        .particle:nth-child(5) { left: 70%; animation-duration: 17s; }
+        .particle:nth-child(6) { left: 85%; animation-duration: 19s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(120vh) scale(0.6); opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+        }
+
+        /* MAIN CONTAINER */
         #aiPageContainer {
             max-width: 700px;
             margin: 0 auto;
             background: white;
             border-radius: 16px;
             padding: 2rem;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);    
+            position: relative;
+            z-index: 10;
+            animation: slideFade 0.9s ease forwards, floatBox 8s ease-in-out infinite;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatBox {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         #aiHeader {
@@ -29,7 +90,6 @@
             color: var(--sage);
         }
 
-        /* Chat window */
         #chatWindow {
             height: 60vh;
             overflow-y: auto;
@@ -39,75 +99,50 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            animation: glowPulse 1.6s ease-out 0.4s;
         }
 
-        /* Reveal responses when clicked */
-        #q1:checked ~ .r1 { display: block; }
-        #q2:checked ~ .r2 { display: block; }
-        #q3:checked ~ .r3 { display: block; }
-        #q4:checked ~ .r4 { display: block; }
-        #q5:checked ~ .r5 { display: block; }
-
-        /* Fade animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+            50% { box-shadow: 0 0 18px rgba(120, 150, 120, 0.35); }
+            100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
         }
 
-        /* Fake AI responses (CSS-only keyword matching) */
-        #userInput[value*="pasta"] ~ #chatWindow .aiPasta,
-        #userInput[value*="dessert"] ~ #chatWindow .aiDessert,
-        #userInput[value*="vegetarian"] ~ #chatWindow .aiVeg,
-        #userInput[value*="substitute"] ~ #chatWindow .aiSub,
-        #userInput[value*="other"] ~ #chatWindow .aiOther {
-            display: block;
-        }
-
-        .aiPasta, .aiDessert, .aiVeg, .aiSub, .aiOther {
-            display: none;
-        }
-
-        /* Hide all radio buttons */
         input[type="radio"] { display: none; }
 
-        /* Hide all responses and later steps by default */
-        .resp, .step2, .step3 { display: none; }
+        .resp,
+        .step2-dessert,
+        .step2-veg,
+        .step2-meat,
+        .step2-pasta { display: none; }
 
-        /* STEP 1 → Show responses */
-        #s1-pasta:checked ~ .s1-pasta,
+        /* STEP 1 RESPONSES */
         #s1-dessert:checked ~ .s1-dessert,
-        #s1-veg:checked ~ .s1-veg {
+        #s1-veg:checked ~ .s1-veg,
+        #s1-meat:checked ~ .s1-meat,
+        #s1-pasta:checked ~ .s1-pasta {
             display: block;
         }
 
-        /* STEP 1 → Reveal step 2 choices */
-        #s1-pasta:checked ~ .step2,
-        #s1-dessert:checked ~ .step2,
-        #s1-veg:checked ~ .step2 {
+        /* STEP 1 → Reveal Step 2 */
+        #s1-dessert:checked ~ .step2-dessert,
+        #s1-veg:checked ~ .step2-veg,
+        #s1-meat:checked ~ .step2-meat,
+        #s1-pasta:checked ~ .step2-pasta {
             display: block;
         }
 
-        /* STEP 2 → Show responses */
-        #s2-creamy:checked ~ .s2-creamy,
-        #s2-tomato:checked ~ .s2-tomato,
-        #s2-baked:checked ~ .s2-baked {
+        /* STEP 2 RESPONSES */
+        #s2-choc:checked ~ .s2-choc,
+        #s2-cake:checked ~ .s2-cake,
+        #s2-italian:checked ~ .s2-italian,
+        #s2-soup:checked ~ .s2-soup,
+        #s2-roasted:checked ~ .s2-roasted,
+        #s2-beef:checked ~ .s2-beef,
+        #s2-tomato:checked ~ .s2-tomato {
             display: block;
         }
 
-        /* STEP 2 → Reveal step 3 choices */
-        #s2-creamy:checked ~ .step3,
-        #s2-tomato:checked ~ .step3,
-        #s2-baked:checked ~ .step3 {
-            display: block;
-        }
-
-        /* STEP 3 → Show final responses */
-        #s3-yes:checked ~ .s3-yes,
-        #s3-no:checked ~ .s3-no {
-            display: block;
-        }
-
-        /* Buttons */
         .choiceBubble {
             background: var(--sage);
             color: white;
@@ -124,87 +159,205 @@
             transform: scale(1.05);
         }
 
-        /* Recipe link bubble */
         .dishBubble {
             background: white;
             border: 1px solid var(--sage);
-            padding: 0.8rem 1rem;
+            padding: 0.6rem 0.9rem;
             border-radius: 14px;
             display: inline-block;
-            margin-top: 0.5rem;
+            margin: 0.25rem 0.25rem 0 0;
             text-decoration: none;
             color: var(--charcoal);
+            font-size: 0.9rem;
         }
 
         .dishBubble:hover {
             background: var(--mint);
         }
 
+        .aiBubble {
+            background: white;
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            align-self: flex-start;
+            max-width: 90%;
+            animation: bubbleFadeIn 0.3s ease;
+        }
+
+        @keyframes bubbleFadeIn {
+            from { opacity: 0; transform: translateY(100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .choices {
+            align-self: flex-end;
+        }
+
+        /* FLOATING SIDE CHAT BUTTON */
+        #sideChatButton {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--sage);
+            color: white;
+            font-size: 2rem;
+            padding: 0.8rem 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            transition: 0.25s ease;
+            z-index: 999;
+        }
+
+        #sideChatButton:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: var(--charcoal);
+        }
     </style>
 </head>
 
 <body>
+
+
+    <!-- ✨ PARTICLE SHIMMER BACKGROUND -->
+    <div id="particleLayer">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
 
     <div id="aiPageContainer">
         <h2 id="aiHeader">SousAI Assistant</h2>
 
         <div id="chatWindow">
 
-            <!-- STEP 0 — Greeting -->
-            <div class="aiBubble">Hi! I'm SousAI. What can I help you with today?</div>
+            <!-- GREETING -->
+            <div class="aiBubble">Hi! I'm SousAI. What kind of recipe are you in the mood for today?</div>
 
-            <!-- STEP 1 — User chooses a topic -->
-            <input type="radio" name="step1" id="s1-pasta">
+            <!-- STEP 1 — MAIN CATEGORIES -->
             <input type="radio" name="step1" id="s1-dessert">
             <input type="radio" name="step1" id="s1-veg">
+            <input type="radio" name="step1" id="s1-meat">
+            <input type="radio" name="step1" id="s1-pasta">
 
             <div class="choices step1">
-                <label for="s1-pasta" class="choiceBubble">🍝 I want a pasta recipe</label>
-                <label for="s1-dessert" class="choiceBubble">🍰 I want a dessert</label>
-                <label for="s1-veg" class="choiceBubble">🥗 I want something vegetarian</label>
+                <label for="s1-dessert" class="choiceBubble">🍰 Dessert</label>
+                <label for="s1-veg" class="choiceBubble">🥗 Vegetarian</label>
+                <label for="s1-meat" class="choiceBubble">🍖 Meat</label>
+                <label for="s1-pasta" class="choiceBubble">🍝 Pasta</label>
             </div>
 
             <!-- STEP 1 RESPONSES -->
-            <div class="aiBubble resp s1-pasta">Great choice! What kind of pasta are you in the mood for?</div>
-            <div class="aiBubble resp s1-dessert">Yum! What kind of dessert are you craving?</div>
-            <div class="aiBubble resp s1-veg">Healthy and delicious! What type of vegetarian dish?</div>
+            <div class="aiBubble resp s1-dessert">Dessert time! What kind of dessert are you craving?</div>
+            <div class="aiBubble resp s1-veg">Love it. What kind of vegetarian dish are you thinking about?</div>
+            <div class="aiBubble resp s1-meat">Got it. What kind of meat dish are you in the mood for?</div>
+            <div class="aiBubble resp s1-pasta">Pasta sounds great. What kind of pasta dish?</div>
 
-            <!-- STEP 2 — Follow-up options -->
-            <input type="radio" name="step2" id="s2-creamy">
+            <!-- STEP 2 — SUBCATEGORIES -->
+            <input type="radio" name="step2" id="s2-choc">
+            <input type="radio" name="step2" id="s2-cake">
+            <input type="radio" name="step2" id="s2-italian">
+            <input type="radio" name="step2" id="s2-soup">
+            <input type="radio" name="step2" id="s2-roasted">
+            <input type="radio" name="step2" id="s2-beef">
             <input type="radio" name="step2" id="s2-tomato">
-            <input type="radio" name="step2" id="s2-baked">
 
-            <div class="choices step2">
-                <label for="s2-creamy" class="choiceBubble creamy">Creamy</label>
-                <label for="s2-tomato" class="choiceBubble tomato">Tomato-based</label>
-                <label for="s2-baked" class="choiceBubble baked">Baked pasta</label>
+            <!-- DESSERT SUBCHOICES -->
+            <div class="choices step2-dessert">
+                <label for="s2-choc" class="choiceBubble">Chocolate</label>
+                <label for="s2-cake" class="choiceBubble">Cakes</label>
             </div>
 
-            <!-- STEP 2 RESPONSES -->
-            <div class="aiBubble resp s2-creamy">Try a creamy garlic parmesan pasta. Want the recipe?</div>
-            <div class="aiBubble resp s2-tomato">Pasta Puttanesca is bold and delicious. Want the recipe?</div>
-            <div class="aiBubble resp s2-baked">Baked ziti is always a hit. Want the recipe?</div>
-
-            <!-- STEP 3 — Final step: link to recipe -->
-            <input type="radio" name="step3" id="s3-yes">
-            <input type="radio" name="step3" id="s3-no">
-
-            <div class="choices step3">
-                <label for="s3-yes" class="choiceBubble">Yes, show me!</label>
-                <label for="s3-no" class="choiceBubble">No, something else</label>
+            <!-- VEGETARIAN SUBCHOICES -->
+            <div class="choices step2-veg">
+                <label for="s2-italian" class="choiceBubble">Italian-style</label>
+                <label for="s2-soup" class="choiceBubble">Soups</label>
+                <label for="s2-roasted" class="choiceBubble">Roasted veggies</label>
             </div>
 
-            <!-- STEP 3 RESPONSES -->
-            <div class="aiBubble resp s3-yes">
-                Perfect! Here’s the recipe:
-                <a href="pages/recipes/pastaPuttanesca.html" class="dishBubble">Go to Recipe</a>
+            <!-- MEAT SUBCHOICES -->
+            <div class="choices step2-meat">
+                <label for="s2-beef" class="choiceBubble">Beef</label>
             </div>
 
-            <div class="aiBubble resp s3-no">No problem! What else can I help you with?</div>
+            <!-- PASTA SUBCHOICES -->
+            <div class="choices step2-pasta">
+                <label for="s2-tomato" class="choiceBubble">Tomato-based</label>
+            </div>
+
+            <!-- STEP 2 RESPONSES + RECIPE LINKS -->
+
+            <!-- DESSERT: CHOCOLATE -->
+            <div class="aiBubble resp s2-choc">
+                Chocolate lovers, unite. Here are some rich chocolate desserts:
+                <br>
+                <a href="../pages/recipes/chocolateMochaPie.html" class="dishBubble">Chocolate Mocha Pie</a>
+                <a href="../pages/recipes/chocolateTurtleCookies.html" class="dishBubble">Chocolate Turtle Cookies</a>
+            </div>
+
+            <!-- DESSERT: CAKES -->
+            <div class="aiBubble resp s2-cake">
+                Cake time! Here are some delicious options:
+                <br>
+                <a href="../pages/recipes/lemonRaspberryCake.html" class="dishBubble">Lemon Raspberry Cake</a>
+                <a href="../pages/recipes/phillyFluffCake.html" class="dishBubble">Philly Fluff Cake</a>
+            </div>
+
+            <!-- VEGETARIAN: ITALIAN -->
+            <div class="aiBubble resp s2-italian">
+                Italian-inspired vegetarian dishes? Here are some great choices:
+                <br>
+                <a href="../pages/recipes/pizzaMargherita.html" class="dishBubble">Pizza Margherita</a>
+                <a href="../pages/recipes/cucumberSalad.html" class="dishBubble">Cucumber Salad</a>
+                <a href="../pages/recipes/vegetarianMoussaka.html" class="dishBubble">Vegetarian Moussaka</a>
+            </div>
+
+            <!-- VEGETARIAN: SOUPS -->
+            <div class="aiBubble resp s2-soup">
+                Cozy vegetarian soups coming right up:
+                <br>
+                <a href="../pages/recipes/creamOfAsparagusSoup.html" class="dishBubble">Cream of Asparagus Soup</a>
+                <a href="../pages/recipes/harira.html" class="dishBubble">Harira</a>
+            </div>
+
+            <!-- VEGETARIAN: ROASTED VEG -->
+            <div class="aiBubble resp s2-roasted">
+                Roasted veggies are such a win:
+                <br>
+                <a href="../pages/recipes/roastedCarrotsAndParsnipsWithHoney.html" class="dishBubble">Roasted Carrots & Parsnips</a>
+            </div>
+
+            <!-- MEAT: BEEF -->
+            <div class="aiBubble resp s2-beef">
+                Craving beef? Try this:
+                <br>
+                <a href="../pages/recipes/smashedBeefKebab.html" class="dishBubble">Smashed Beef Kebab</a>
+            </div>
+
+            <!-- PASTA: TOMATO-BASED -->
+            <div class="aiBubble resp s2-tomato">
+                A bold, tomato-based pasta is always a good idea:
+                <br>
+                <a href="../pages/recipes/pastaPuttanesca.html" class="dishBubble">Pasta Puttanesca</a>
+            </div>
+
+            <!-- RESET (PAGE RELOAD) -->
+            <div class="choices">
+                <a href="" class="choiceBubble">🔁 Start over</a>
+            </div>
 
         </div>
 
+    </div>
 
+    <div id="mainPageFooterSection">
+        <h4>Contact Us: 770-777-7777</h4>
+        <button><a href="../pages/support.html">Support Page</a></button>
+    </div>
 
 </body>
 </html>
