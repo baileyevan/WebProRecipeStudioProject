@@ -33,6 +33,7 @@ The website allows users to:
 
 
 ## Project Structure
+```
 MealForge/
 │
 ├── index.html
@@ -52,6 +53,7 @@ MealForge/
 │
 └── assets/
     └── burger-menu-icon.svg
+```
 
 
 ## Setup Instructions
@@ -64,3 +66,4 @@ MealForge/
 3. Open index.html in a web browser.
 
 No additional setup or dependencies are required.
+
