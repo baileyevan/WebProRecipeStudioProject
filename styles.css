@@ -671,22 +671,86 @@ S
     filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
 }
 
+/* Support Page */
 
-/* Footer Section */
-
-#mainPageFooterSection {
-    height: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--sage);
+#faq {
+    background-color: var(--cream);
+    margin: 50px auto;
+    text-align: left;
+    margin-top: 180px;
 }
 
-#mainPageFooterSection button {
-    width: 125px;
-    height: 30px;
-    background-color: var(--accent);
-    border: 1px solid black;
-    border-radius: 20px;
+#faq h2 {
+    margin-bottom: 15px;
+}
+
+#faq details {
+    border: 1px solid #ccc;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    padding: 8px;
+    box-shadow: 3px 3px 2px #6B9080;
+}
+
+#faq summary {
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#faq p {
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+#contact {
+    background-color: #6B9080;
+    box-shadow: 5px 5px 3px black;
+    margin: 50px auto;
+    padding: 25px;
+}
+
+#contact input, #contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact textarea {
+    height: 120px;
+    resize: none;
+}
+
+#contact fieldset {
+    border: 1px solid white;
+    padding:10px;
+    display: flex;
+    justify-items: space-between;
+    align-items: center;
+}
+
+#contact #button {
+    text-align: center;
+    line-height: 0px;
+    cursor: pointer;
+}
+
+#contact #button:hover {
+    box-shadow: 5px 5px 3px black;
+    opacity: 50%;
+}
+
+#form_buttons {
+    align-items: right;
+    margin-left: 80px;
+    margin-top: 5px;
+    gap: 10px;
+}
+
+#file_button {
+    margin-left: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
 }
