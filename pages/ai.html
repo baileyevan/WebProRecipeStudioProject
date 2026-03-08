@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,7 @@
             padding-top: 20vh;
             overflow-x: hidden;
         }
-
-        /* ✨ FLOATING PARTICLE SHIMMER LAYER (VISIBLE VERSION) */
+        
         #particleLayer {
             position: fixed;
             top: 0;
@@ -27,61 +27,96 @@
             overflow: hidden;
             z-index: 0;
         }
-
         /* Create 40 floating particles */
+        
         .particle {
             position: absolute;
             width: 20px;
             height: 20px;
-            background: radial-gradient(circle, rgba(13, 251, 13, 0.9), rgba(170,200,170,0));
+            background: radial-gradient(circle, rgba(13, 251, 13, 0.9), rgba(170, 200, 170, 0));
             border-radius: 50%;
             animation: floatUp 12s linear infinite;
             opacity: 0.7;
             filter: blur(1px);
         }
-
         /* Randomize particle positions */
-        /* You can add more if you want a denser shimmer */
-        .particle:nth-child(1) { left: 10%; animation-duration: 14s; }
-        .particle:nth-child(2) { left: 25%; animation-duration: 18s; }
-        .particle:nth-child(3) { left: 40%; animation-duration: 16s; }
-        .particle:nth-child(4) { left: 55%; animation-duration: 20s; }
-        .particle:nth-child(5) { left: 70%; animation-duration: 17s; }
-        .particle:nth-child(6) { left: 85%; animation-duration: 19s; }
-
-        @keyframes floatUp {
-            0% { transform: translateY(120vh) scale(0.6); opacity: 0.2; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+        
+        .particle:nth-child(1) {
+            left: 10%;
+            animation-duration: 14s;
         }
-
+        
+        .particle:nth-child(2) {
+            left: 25%;
+            animation-duration: 18s;
+        }
+        
+        .particle:nth-child(3) {
+            left: 40%;
+            animation-duration: 16s;
+        }
+        
+        .particle:nth-child(4) {
+            left: 55%;
+            animation-duration: 20s;
+        }
+        
+        .particle:nth-child(5) {
+            left: 70%;
+            animation-duration: 17s;
+        }
+        
+        .particle:nth-child(6) {
+            left: 85%;
+            animation-duration: 19s;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(120vh) scale(0.6);
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1);
+                opacity: 0;
+            }
+        }
         /* MAIN CONTAINER */
+        
         #aiPageContainer {
             max-width: 700px;
             margin: 0 auto;
             background: white;
             border-radius: 16px;
             padding: 2rem;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.12);    
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
             position: relative;
             z-index: 10;
             animation: slideFade 0.9s ease forwards, floatBox 8s ease-in-out infinite;
             opacity: 0;
             transform: translateY(20px);
         }
-
+        
         @keyframes slideFade {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        
         @keyframes floatBox {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
-
+        
         #aiHeader {
             text-align: center;
             font-family: 'Playfair Display', serif;
@@ -89,7 +124,7 @@
             margin-bottom: 1.5rem;
             color: var(--sage);
         }
-
+        
         #chatWindow {
             height: 60vh;
             overflow-y: auto;
@@ -101,48 +136,58 @@
             gap: 1rem;
             animation: glowPulse 1.6s ease-out 0.4s;
         }
-
+        
         @keyframes glowPulse {
-            0% { box-shadow: 0 0 0 rgba(0,0,0,0); }
-            50% { box-shadow: 0 0 18px rgba(120, 150, 120, 0.35); }
-            100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+            0% {
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+            50% {
+                box-shadow: 0 0 18px rgba(120, 150, 120, 0.35);
+            }
+            100% {
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
         }
-
-        input[type="radio"] { display: none; }
-
+        
+        input[type="radio"] {
+            display: none;
+        }
+        
         .resp,
         .step2-dessert,
         .step2-veg,
         .step2-meat,
-        .step2-pasta { display: none; }
-
+        .step2-pasta {
+            display: none;
+        }
         /* STEP 1 RESPONSES */
-        #s1-dessert:checked ~ .s1-dessert,
-        #s1-veg:checked ~ .s1-veg,
-        #s1-meat:checked ~ .s1-meat,
-        #s1-pasta:checked ~ .s1-pasta {
+        
+        #s1-dessert:checked~.s1-dessert,
+        #s1-veg:checked~.s1-veg,
+        #s1-meat:checked~.s1-meat,
+        #s1-pasta:checked~.s1-pasta {
             display: block;
         }
-
         /* STEP 1 → Reveal Step 2 */
-        #s1-dessert:checked ~ .step2-dessert,
-        #s1-veg:checked ~ .step2-veg,
-        #s1-meat:checked ~ .step2-meat,
-        #s1-pasta:checked ~ .step2-pasta {
+        
+        #s1-dessert:checked~.step2-dessert,
+        #s1-veg:checked~.step2-veg,
+        #s1-meat:checked~.step2-meat,
+        #s1-pasta:checked~.step2-pasta {
             display: block;
         }
-
         /* STEP 2 RESPONSES */
-        #s2-choc:checked ~ .s2-choc,
-        #s2-cake:checked ~ .s2-cake,
-        #s2-italian:checked ~ .s2-italian,
-        #s2-soup:checked ~ .s2-soup,
-        #s2-roasted:checked ~ .s2-roasted,
-        #s2-beef:checked ~ .s2-beef,
-        #s2-tomato:checked ~ .s2-tomato {
+        
+        #s2-choc:checked~.s2-choc,
+        #s2-cake:checked~.s2-cake,
+        #s2-italian:checked~.s2-italian,
+        #s2-soup:checked~.s2-soup,
+        #s2-roasted:checked~.s2-roasted,
+        #s2-beef:checked~.s2-beef,
+        #s2-tomato:checked~.s2-tomato {
             display: block;
         }
-
+        
         .choiceBubble {
             background: var(--sage);
             color: white;
@@ -154,11 +199,11 @@
             align-self: flex-end;
             transition: .2s;
         }
-
+        
         .choiceBubble:hover {
             transform: scale(1.05);
         }
-
+        
         .dishBubble {
             background: white;
             border: 1px solid var(--sage);
@@ -170,11 +215,11 @@
             color: var(--charcoal);
             font-size: 0.9rem;
         }
-
+        
         .dishBubble:hover {
             background: var(--mint);
         }
-
+        
         .aiBubble {
             background: white;
             padding: 0.9rem 1rem;
@@ -183,17 +228,23 @@
             max-width: 90%;
             animation: bubbleFadeIn 0.3s ease;
         }
-
+        
         @keyframes bubbleFadeIn {
-            from { opacity: 0; transform: translateY(100px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-
+        
         .choices {
             align-self: flex-end;
         }
-
         /* FLOATING SIDE CHAT BUTTON */
+        
         #sideChatButton {
             position: fixed;
             right: 25px;
@@ -205,11 +256,11 @@
             padding: 0.8rem 1rem;
             border-radius: 50%;
             text-decoration: none;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
             transition: 0.25s ease;
             z-index: 999;
         }
-
+        
         #sideChatButton:hover {
             transform: translateY(-50%) scale(1.1);
             background: var(--charcoal);
@@ -220,7 +271,7 @@
 <body>
 
 
-    <!-- ✨ PARTICLE SHIMMER BACKGROUND -->
+    <!-- PARTICLE SHIMMER BACKGROUND -->
     <div id="particleLayer">
         <div class="particle"></div>
         <div class="particle"></div>
@@ -360,4 +411,5 @@
     </div>
 
 </body>
+
 </html>
