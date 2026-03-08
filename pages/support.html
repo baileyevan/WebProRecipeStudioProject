@@ -27,40 +27,136 @@
     </nav>
 
     <main>
-        <!--
-        FAQ
+        <div id="faq">
+            <h2>FAQ</h2>
 
-        How to find a recipe/sections
+            <details>
+                <summary>
+                    How do I find a recipe or section?
+                </summary>
+                <p>
+                    All recipes are separated by different categories after you nagivate to the "Browse All" button at the bottom of the home page.
+                </p>
+            </details>
 
-        Can servings be changed?
-            Each recipe has a serving size listed.
-            Based on how many people you want to feed, multiply
-            adjust ingredients quantities
-            also acknowledge that prep time may need to be adjusted
+            <details>
+                <summary>
+                    Can servings be changed?
+                </summary>
+                <p>
+                    Each recipe can be adjusted. If you need to serve more or less people, just multiply the ingredient quanties accordingly. Keep in mind that preparation and cooking times may need to be adjusted.
+                </p>
+            </details>
+            
+            <details>
+                <summary>
+                    Can I substitute ingredients?
+                </summary>
+                <p>
+                    Of course! Most recipes can easily be adjusted for dietary tweaks.<br>
+                    For diabetics and low sugar people, stevia and splenda can be substituted.<br>
+                    Vegans and vegetarians can use egg-replacements and dairy free milk/cream cheese/butter/etc.<br>
+                    Gluten-free people can use wheat-free flour (all-purpose or self-rising depending on the recipe) such as almond flour, potato flour, rice flour, and corn flour.
+                </p>
+            </details>
 
-        substitutins:
-            dietary tweaks (vegan, gluten free, diabetic alternati ve sweeteners)
-        storage & reheating:
+            <details>
+                <summary>
+                    What does is mean to be vegan/vegatarian?
+                </summary>
+                <p>
+                    A vegan diet is one that is completely free of any animal products! So this means no meat, eggs, dairy, or seafood.<br>
+                    A vegetarian diet is one where you don't eat meat, but you (occasionally) eat other animal products such as dairy, eggs, etc.
+                </p>
+            </details>
 
-        what does this mean?
-        - gluten free, dairy free, paleo, keto, etc.
+            <details>
+                <summary>
+                    What does gluten-free mean?
+                </summary>
+                <p>
+                    Gluten is a protein found in several grains, therefore gluten-free is anything without those particular grains. Wheat is the most common grain containing gluten and can be found in breads, pastas, cakes, cookies, cereals, etc. Gluten-free recipes are best for those who are either allergic or intolerant to gluten, or for those who suffer from celiac disease. However, even if you tolerate gluten just fine, it’s unfortunately been proven to cause inflammation in all of our bodies.
+                </p>
+            </details>
 
-        "My recipe doesn't look that same as the picture"
+            <details>
+                <summary>
+                    What does dairy-free mean?
+                </summary>
+                <p>
+                    Dairy-free means a recipe or diet that is completely free of any milk or milk products. The most common examples of milk products are yogurt, cheese, and butter. The reason why most people are dairy-free or enjoy dairy-free recipes is because they experience some sort of lactose intolerance. Lactose is a sugar found in all dairy products, and those who are lactose intolerant simply lack the proper enzyme in their gut to digest lactose. However, similar to gluten, dairy has been proven to cause inflammation in the body, whether you’re lactose intolerant or not.
+                </p>
+            </details>
 
-        Can i add a recipe of my own?
-            of course, just submit one below with all the specifications listed and someone will review and add your recipe.
-        -->
+            <details>
+                <summary>
+                    How should food be stored and reheated?
+                </summary>
+                <p>
+                    Make sure all food is cooled down completely and free of steam before packing it and putting it in the freezer or fridge. Most food can be kept safely in the freezer for a couple weeks if stored in an airtight bag or container.
+                </p>
+            </details>
 
-        <!--
-        contact section
+            <details>
+                <summary>
+                    Why doesn't my food look the same as the picture?
+                </summary>
+                <p>
+                    Any number of small variations can happen due to ingredient brands, cooking equipment, or presentation. Focus more on the taste and texture rather than the exact appearance.
+                </p>
+            </details>
 
-        name
-        number
-        email
-        [................................]
-        [add picture: choose file button]
+            <details>
+                <summary>
+                    Can I submit my own recipe?
+                </summary>
+                <p>
+                    Of course! Submit your recipe by typing it below in the contact form. Someone from our team will review it and decide whether or not to add it to a collection.
+                </p>
+                <p>
+                    Make sure your recipe has all the following fields:<br>
+                    ---------------<br>
+                    Title<br>
+                    Picture (if possible)<br>
+                    Ingredient list [making sure to include all measurements]<br>
+                    Simple step-by-step instructions<br>
+                    ---------------
+                </p>
+            </details>
+        </div>
+        
+        <div id="contact">
+            <h2>Contact Form</h2>
 
-        send any inquires to email button-->
+            <form action="mailto:recipestudio@gmail.com" method="post" enctype="text/plain">
+                <label>Name: </label>
+                <input type="text" placeholder="Enter your name..">
+
+                <label>Number: </label>
+                <input type="tel" placeholder="Enter phone number..">
+
+                <label>Email: </label>
+                <input type="email" placeholder="Enter your email..">
+
+                <label>Subject: </label>
+                <input type="text" placeholder="Enter subject matter [recipe addition, question, etc.]">
+
+                <label>Message: </label>
+                <textarea placeholder="Enter message.."></textarea>
+
+                <fieldset>
+                    <div id="file_button">
+                        <input type="file">
+                    </div>
+
+                    <div id="form_buttons">
+                        <input id="button" type="submit" onclick="alert('Form Submitted')" value="submit">
+
+                        <input id="button" type="reset" value="Reset Form">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </main>
 
 </body>
